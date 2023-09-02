@@ -17,32 +17,32 @@ function Header() {
 					</Link>
 				</li>
 				<li>
-					<Link href='./gallery' className={url === '/gallery' ? styles.on : ''}>
+					<Link href='gallery' className={url === '/gallery' ? styles.on : ''}>
 						Gallery
 					</Link>
 				</li>
 				<li>
-					<Link href='./ssg' className={url === '/ssg' ? styles.on : ''}>
+					<Link href='ssg' className={url === '/ssg' ? styles.on : ''}>
 						SSG
 					</Link>
 				</li>
 				<li>
-					<Link href='./ssr' className={url === '/ssr' ? styles.on : ''}>
+					<Link href='ssr' className={url === '/ssr' ? styles.on : ''}>
 						SSR
 					</Link>
 				</li>
 				<li>
-					<Link href='./isr' className={url === '/isr' ? styles.on : ''}>
+					<Link href='isr' className={url === '/isr' ? styles.on : ''}>
 						ISR
 					</Link>
 				</li>
 				<li>
-					<Link href='./csr' className={url === '/csr' ? styles.on : ''}>
+					<Link href='csr' className={url === '/csr' ? styles.on : ''}>
 						CSR
 					</Link>
 				</li>
 				<li>
-					<Link href='./post' className={url === '/post' ? styles.on : ''}>
+					<Link href='post' className={url === '/post' ? styles.on : ''}>
 						Post
 					</Link>
 				</li>
