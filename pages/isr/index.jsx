@@ -10,7 +10,7 @@ function Isr({ now }) {
 }
 
 // ssg 방식에서 revalidate props 추가
-// 설정시간에 따라 갱신
+// 설정시간에 따라 갱신 (일정 주기로 바뀔때)
 export async function getStaticProps() {
 	console.log('isr');
 	return {
