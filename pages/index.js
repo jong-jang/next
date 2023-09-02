@@ -9,11 +9,11 @@ export default function Home() {
 		<>
 			<main className={styles.main}>
 				<div>
-					<Image src={pic1} alt='pic' quality={10} fill />
+					<Image src={pic1} alt='pic' quality={10} fill priority />
 				</div>
 				<div>
-					{/* 기본적으로 이미지 컴포넌트를 lazy-loading적용 priority로 이미지 로딩 우선순위를 지정하면 자동으로 lazy_loading해제 */}
-					<Image src={pic2} alt='pic' quality={10} fill priority />
+					{/* 기본적으로 이미지 컴포넌트를 lazy-loading적용 priority로 이미지 로딩 우선순위를 지정하면 자동으로 lazy_loading해제 보통 화면이 렌더링되면 보이는 첫번째 이미지에 지정*/}
+					<Image src={pic2} alt='pic' quality={10} fill />
 				</div>
 				<div>
 					<Image src={pic3} alt='pic' quality={10} fill />
