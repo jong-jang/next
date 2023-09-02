@@ -17,3 +17,6 @@ export async function getStaticProps() {
 }
 
 export default Ssg;
+
+// 바뀔일이 거의 없는 파일 SSG 방식으로
+// 빌드전엔 새로고침시 바뀌는데 빌드 후엔 static하게 바뀜
