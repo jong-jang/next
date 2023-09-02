@@ -36,6 +36,11 @@ function Header() {
 						ISR
 					</Link>
 				</li>
+				<li>
+					<Link href='./csr' className={url === '/csr' ? styles.on : ''}>
+						CSR
+					</Link>
+				</li>
 			</ul>
 		</header>
 	);
