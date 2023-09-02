@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from './Layout.module.scss';
 import { useRouter } from 'next/router';
+import Header from '../header/Header';
 
 function Layout({ children }) {
 	const router = useRouter();
@@ -11,6 +12,7 @@ function Layout({ children }) {
 			<Head>
 				<title>{`${Title} Page`}</title>
 			</Head>
+			<Header />
 			<main className={styles.layout}>
 				<h1>{Title}</h1>
 				{children}
