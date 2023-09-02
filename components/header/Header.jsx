@@ -41,6 +41,11 @@ function Header() {
 						CSR
 					</Link>
 				</li>
+				<li>
+					<Link href='./post' className={url === '/post' ? styles.on : ''}>
+						Post
+					</Link>
+				</li>
 			</ul>
 		</header>
 	);
