@@ -20,7 +20,8 @@ export default function Home() {
 				</div>
 
 				<div>
-					<Image src={pic1} alt='pic' fill quality={100} />
+					{/* placeholder를 blur 지정하면 미리 blur처리된 용량이 적은 이미지를 먼저 화면에 띄우고 최적화된 원본 로딩완료되면 바꿔치기 */}
+					<Image src={pic1} alt='pic' fill quality={100} placeholder='blur' />
 				</div>
 
 				<div>
