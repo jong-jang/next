@@ -2,6 +2,12 @@ import Head from 'next/head';
 import styles from './Layout.module.scss';
 import { useRouter } from 'next/router';
 import Header from '../Header/Header';
+import { Orbitron } from 'next/font/google';
+import clsx from 'clsx';
+
+const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '500'], preload: true, variable: '--font-orbitron' });
+// variable 등록하지 않고 해당 컴포넌트에 객체명.className을 등록하면 해당 컴포넌트 안쪽에 있는 모든 폰트에는 구글 웹폰트 적용
+// variable을 등록하고 컴포넌트에 객체명.variable을 등록하면 컴포넌트에서 scss모듈에 var(--font-객체명) 형식으로 지정한 폰트만 선별적으로 구글폰트 적용
 
 function Layout({ children }) {
 	const router = useRouter();
@@ -18,7 +24,7 @@ function Layout({ children }) {
 			</Head>
 
 			<Header />
-			<main className={styles.layout}>
+			<main className={clsx(styles.layout, orbitron.variable)}>
 				<h1>{Title}</h1>
 				{children}
 			</main>
