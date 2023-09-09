@@ -1,19 +1,27 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 function Post() {
-	// api 라우팅 (서버요청처리를 위해서는 express같은 서버관련 프레임웍없이도 next자체적으로 서버요청에 대한 응답을 클라이언트로 전달 가능)
-	// next에서는 api폴더 안쪽에 서버쪽 요청 및 응답에 대한 라우팅 설정가능
-	// api폴더 안쪽에 파일명이 자동적으로 라우터요청명으로 설정됨 /api/hello
+	const [Title, setTitle] = useState('');
+	const [Content, setContent] = useState('');
 
-	useEffect(() => {
-		axios.get('/api/post').then((json) => console.log(json));
-	}, []);
+	const handleSend = (e) => {
+		e.preventDefault();
+		const item = { title: Title, content: Content };
+		console.log(item);
+		axios.post('/api/post', item).then((res) => console.log(res));
+	};
 
 	return (
 		<main>
-			<p>게시글 목록 페이지</p>
-			<button>서버데이터 변경</button>
+			<form onSubmit={handleSend}>
+				<label htmlFor='title'>title</label>
+				<input type='text' value={Title} onChange={(e) => setTitle(e.target.value)} />
+				<br />
+				<label htmlFor='content'>content</label>
+				<textarea name='content' id='content' cols='30' rows='10' value={Content} onChange={(e) => setContent(e.target.value)}></textarea>
+				<button>save</button>
+			</form>
 		</main>
 	);
 }

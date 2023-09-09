@@ -1,11 +1,37 @@
 import { connectMongoDB } from '@/lips/MongoConnect';
+import { Post } from '@/model/PostSchema';
+import { Counter } from '@/model/CounterSchema';
 
 export default async function handler(req, res) {
-	try {
-		await connectMongoDB();
-		res.status(200).send('success');
-	} catch (err) {
-		res.status(400).send({ err });
+	if (req.method === 'POST') {
+		//클라이언트로부터 전달받은 데이터 정보 임시로 변수에 담음
+		const temp = req.body; //{title, content}
+		try {
+			await connectMongoDB();
+
+			Counter.findOne({ name: 'counter' })
+				.exec()
+				.then((doc) => {
+					//클라이언트로 가져온 객체에 Counter모델 정보 추가
+					temp.postNum = doc.postNum; // {title, contnet, postNum}
+
+					//카운터값이 추가된 모델 객체를 저장
+					const postModel = new Post(temp);
+
+					//Post모델 저장이 성공하면 다시 기존 Counter모델 값을 1증가
+					postModel.save().then(() => {
+						Counter.updateOne({ name: 'counter' }, { $inc: { postNum: 1 } })
+							.exec()
+							.then(() => {
+								//Counter모델 값 변경이 성공하면 클라이언트에 성공 응답객체 전달
+								res.json({ success: true });
+							})
+							.catch((err) => res.json({ success: false, err: err }));
+					});
+				});
+		} catch (err) {
+			res.send({ err });
+		}
 	}
 }
 
