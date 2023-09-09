@@ -8,8 +8,11 @@ import { useState } from 'react';
 import { FaAmilia } from 'react-icons/fa6';
 import { FcAutomotive } from 'react-icons/fc';
 import { IconContext } from 'react-icons';
+import { useGlobalData } from '@/hooks/useGlobalContext';
 
 export default function Home() {
+	const data = useGlobalData();
+	console.log(data);
 	const [Loading, setLoading] = useState(true);
 	return (
 		<>
