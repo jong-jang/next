@@ -10,6 +10,7 @@ const nextConfig = {
 	images: {
 		domains: ['images.unsplash.com'],
 	},
+	compiler: { styledComponent: true }, // styledcomponent나 modules.css 쓸 때 클래스명 다른 문제
 };
 
 module.exports = nextConfig;
