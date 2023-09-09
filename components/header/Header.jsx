@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styles from './Header.module.scss';
 import { useRouter } from 'next/router';
+import Login from '../Login';
 
 function Header() {
 	const url = useRouter().asPath;
@@ -10,6 +11,9 @@ function Header() {
 			<h1>
 				<Link href='/'>LOGO</Link>
 			</h1>
+
+			<Login />
+
 			<ul className={styles.gnb}>
 				<li>
 					<Link href='/about' className={url === '/about' ? styles.on : ''}>
