@@ -2,53 +2,41 @@ import Link from 'next/link';
 import styles from './Header.module.scss';
 import { useRouter } from 'next/router';
 import Login from '../Login';
+import { useGlobalData } from '@/hooks/useGlobalContext';
+import Logout from '../Logout';
 
 function Header() {
+	const { LoginInfo, setLoginInfo } = useGlobalData();
 	const url = useRouter().asPath;
-
 	return (
 		<header className={styles.header}>
 			<h1>
 				<Link href='/'>LOGO</Link>
 			</h1>
 
-			<Login />
+			{!LoginInfo.uid ? <Login /> : <Logout />}
 
 			<ul className={styles.gnb}>
 				<li>
-					<Link href='/about' className={url === '/about' ? styles.on : ''}>
-						About
-					</Link>
+					<Link href='/about'>About</Link>
 				</li>
 				<li>
-					<Link href='gallery' className={url === '/gallery' ? styles.on : ''}>
-						Gallery
-					</Link>
+					<Link href='/gallery'>Gallery</Link>
 				</li>
 				<li>
-					<Link href='ssg' className={url === '/ssg' ? styles.on : ''}>
-						SSG
-					</Link>
+					<Link href='ssg'>SSG</Link>
 				</li>
 				<li>
-					<Link href='ssr' className={url === '/ssr' ? styles.on : ''}>
-						SSR
-					</Link>
+					<Link href='ssr'>SSR</Link>
 				</li>
 				<li>
-					<Link href='isr' className={url === '/isr' ? styles.on : ''}>
-						ISR
-					</Link>
+					<Link href='isr'>ISR</Link>
 				</li>
 				<li>
-					<Link href='csr' className={url === '/csr' ? styles.on : ''}>
-						CSR
-					</Link>
+					<Link href='csr'>CSR</Link>
 				</li>
 				<li>
-					<Link href='post' className={url === '/post' ? styles.on : ''}>
-						Post
-					</Link>
+					<Link href='post'>Post</Link>
 				</li>
 			</ul>
 		</header>
