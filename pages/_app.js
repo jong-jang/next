@@ -1,11 +1,14 @@
 import Layout from '@/components/layout/Layout';
+import { GlobalProvider } from '@/hooks/useGlobalContext';
 import '@/styles/globals.scss';
 
 export default function App({ Component, pageProps }) {
 	return (
-		<Layout>
-			<Component {...pageProps} />
-		</Layout>
+		<GlobalProvider>
+			<Layout>
+				<Component {...pageProps} />
+			</Layout>
+		</GlobalProvider>
 	);
 }
 /*
