@@ -3,6 +3,16 @@ import { Post } from '@/model/PostSchema';
 import { Counter } from '@/model/CounterSchema';
 
 export default async function handler(req, res) {
+	if (req.method === 'GET') {
+		try {
+			await connectMongoDB();
+			const post = await Post.find();
+			res.json({ success: true, result: post });
+		} catch (error) {
+			res.send({ error });
+		}
+	}
+
 	if (req.method === 'POST') {
 		//클라이언트로부터 전달받은 데이터 정보 임시로 변수에 담음
 		const temp = req.body; //{title, content}
