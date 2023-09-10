@@ -4,39 +4,63 @@ import { useRouter } from 'next/router';
 import Login from '../Login';
 import { useGlobalData } from '@/hooks/useGlobalContext';
 import Logout from '../Logout';
+import { useState, useEffect, useRef } from 'react';
 
 function Header() {
-	const { LoginInfo, setLoginInfo } = useGlobalData();
+	const firstLoaded = useRef(true);
+	const { LoginInfo } = useGlobalData();
 	const url = useRouter().asPath;
+
+	useEffect(() => {
+		//state는 변경되었을때 다음번 랜더링 타이밍에 적용되지만
+		//useRef값은 해당 사이클에 바로 적용되므로
+		//useRef로 firstLoaded값으로 로그인, 로그아웃 컴포넌트 분기처리
+		firstLoaded.current = false;
+	}, [LoginInfo]);
 	return (
 		<header className={styles.header}>
 			<h1>
 				<Link href='/'>LOGO</Link>
 			</h1>
 
-			{!LoginInfo.uid ? <Login /> : <Logout />}
+			{/* 처음 로그인시에는 null리턴, 처음 로그인이 아닐때는 다시 중첩 3항 연산자로 Login, Logout 분기처리 */}
+			{!firstLoaded.current ? !LoginInfo.uid ? <Login /> : <Logout /> : null}
 
 			<ul className={styles.gnb}>
 				<li>
-					<Link href='/about'>About</Link>
+					<Link href='/about' className={url === '/about' ? styles.on : ''}>
+						About
+					</Link>
 				</li>
 				<li>
-					<Link href='/gallery'>Gallery</Link>
+					<Link href='/gallery' className={url === '/gallery' ? styles.on : ''}>
+						Gallery
+					</Link>
 				</li>
 				<li>
-					<Link href='ssg'>SSG</Link>
+					<Link href='/ssg' className={url === '/ssg' ? styles.on : ''}>
+						SSG
+					</Link>
 				</li>
 				<li>
-					<Link href='ssr'>SSR</Link>
+					<Link href='/ssr' className={url === '/ssr' ? styles.on : ''}>
+						SSR
+					</Link>
 				</li>
 				<li>
-					<Link href='isr'>ISR</Link>
+					<Link href='/isr' className={url === '/isr' ? styles.on : ''}>
+						ISR
+					</Link>
 				</li>
 				<li>
-					<Link href='csr'>CSR</Link>
+					<Link href='/csr' className={url === '/csr' ? styles.on : ''}>
+						CSR
+					</Link>
 				</li>
 				<li>
-					<Link href='post'>Post</Link>
+					<Link href='/post' className={url === '/post' ? styles.on : ''}>
+						Post
+					</Link>
 				</li>
 			</ul>
 		</header>

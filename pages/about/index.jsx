@@ -11,7 +11,8 @@ function About() {
 		e.preventDefault();
 		const createdUser = await firebase.auth().createUserWithEmailAndPassword(Email, Pwd);
 		console.log(createdUser);
-		createdUser.user.updateProfile({ displayName: Name });
+		//await으로 위에서 createdUser값이 만들어질때까지 동기처리
+		await createdUser.user.updateProfile({ displayName: Name });
 		//회원가입해서 성공적으로 firebase에 정보값이 등록되자마자 강제로 로그아웃 처리
 		firebase.auth().signOut();
 	};
