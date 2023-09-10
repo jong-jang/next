@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from './Layout.module.scss';
 import { useRouter } from 'next/router';
-import Header from '../Header/Header';
+import Header from '../header/Header';
 import { Orbitron } from 'next/font/google';
 import clsx from 'clsx';
 //npm i clsx
