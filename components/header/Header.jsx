@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Login from '../Login';
 import { useGlobalData } from '@/hooks/useGlobalContext';
 import Logout from '../Logout';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 function Header() {
 	const firstLoaded = useRef(true);
@@ -23,8 +23,8 @@ function Header() {
 				<Link href='/'>LOGO</Link>
 			</h1>
 
-			{/* 처음 로그인시에는 null리턴, 처음 로그인이 아닐때는 다시 중첩 3항 연산자로 Login, Logout 분기처리 */}
-			{!firstLoaded.current ? !LoginInfo.uid ? <Login /> : <Logout /> : null}
+			{!firstLoaded.current && !LoginInfo.uid ? <Login /> : null}
+			{!firstLoaded.current && LoginInfo.uid ? <Logout /> : null}
 
 			<ul className={styles.gnb}>
 				<li>
